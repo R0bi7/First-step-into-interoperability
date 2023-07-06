@@ -1,27 +1,26 @@
 # Error Handling
 
-In success cases, dApp users only need to invoke two transactions (one for the source chain, and the other for
-the destination chain).  However, there might be some error situations such as the execution of the call request
-has failed on the destination chain. In this case, we need to notify the user on the source chain to rollback to the state
-before the call request.
+In successful cases, dApp users only need to invoke two transactions (one for the source chain and the other for the destination chain).
+However, there might be some error situations, such as the execution of the call request failing on the destination chain.
+In this case, we need to notify the user on the source chain to rollback to the state before the call request.
 
-If a DApp needs to handle a rollback operation, it would fill some data in the last `_rollback` parameter of the `sendCallMessage`,
-otherwise it would have a null value which indicates no rollback handling is required.
+If a dApp needs to handle a rollback operation, it would fill in some data in the last `_rollback` parameter of the `sendCallMessage` method.
+Otherwise, it would have a null value, indicating that no rollback handling is required.
 
-## Simplified rollback flow diagram
+## Simplified Rollback Flow Diagram
 
 ![xCall flow diagram](imgs/xCall_failed_executeCall.svg)
 
 Error handling flow:
-1. Invocation of [executeCall](SENDING_CROSS_CHAIN_MESSAGE.md#execute-call-on-destination-chain) on destination chain fails
-2. If input rollback was non-null, [ResponseMessage Event](#responsemessage) is relayed back to the source chain and [RollbackMessage](#rollbackmessage)
-is output by xCall Smart Contract on source chain
-3. Once user recognised the rollback situation [executeRollback](#executerollback) is invoked on the source chain xCall Smart Contract
-4. [executeRollback](#executerollback) invokes `handleCallMessage` with given `_rollback` data on the source chain Smart Contract A
+1. Invocation of [executeCall](SENDING_CROSS_CHAIN_MESSAGE.md#execute-call-on-destination-chain) on the destination chain fails.
+2. If the input rollback was non-null, the [ResponseMessage Event](#responsemessage) is relayed back to the source chain,
+and the [RollbackMessage](#rollbackmessage) is output by the xCall Smart Contract on the source chain.
+3. Once the user recognizes the rollback situation, [executeRollback](#executerollback) is invoked on the source chain's xCall Smart Contract.
+4. [executeRollback](#executerollback) invokes the `handleCallMessage` method with the given `_rollback` data on Smart Contract A on the source chain.
+
 
 
 Find example implementation of rollback handling [here](https://github.com/R0bi7/xCall-testing-dApp/blob/master/src/services/XCallService.ts#L268).
-
 
 ## ResponseMessage
 

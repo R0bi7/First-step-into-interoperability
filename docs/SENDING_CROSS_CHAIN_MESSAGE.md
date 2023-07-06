@@ -1,35 +1,36 @@
 # Sending cross-chain message
 
-xCall encapsulates the underlying interoperability technology into simple to use Smart Contract application programming interface (i.e. API).
+xCall encapsulates the underlying interoperability technology into a simple-to-use Smart Contract application programming interface (API).
 
-Sending cross-chain message should be as simple as calling appropriate send message method of pre-deployed xCall Smart Contract on source chain
-and calling execute call method on the destination chain.
+Sending a cross-chain message should be as simple as calling the appropriate send message method of the pre-deployed xCall Smart Contract on the source chain and invoking the execute call method on the destination chain.
 
 Purpose of this document is to:
-- Present [Simplified flow diagram](#simplified-flow-diagram)
-- Provide example implementation & invocation of [sendCallMessage](#send-call-message-method) method
-- Present Smart Contract [Events](#events) output in the process
-- Showcase [sending message client side implementation example](#sending-message-from-client-side)
-- Point you to [fee handling](FEE_HANDLING.md) documentation
-- Point you to [error/failure handling scenario documentation](ERROR_HANDLING.md)
+- Present a [Simplified Flow Diagram](#simplified-send-message-flow-diagram)
+- Provide an example implementation and invocation of the [sendCallMessage](#send-call-message-method) method
+- Present the Smart Contract [Events](#events) output in the process
+- Showcase an example implementation of [sending a message from the client side](#sending-message-from-client-side)
+- Guide you to the [fee handling documentation](FEE_HANDLING.md)
+- Direct you to the [error/failure handling scenario documentation](ERROR_HANDLING.md)
 
-## Simplified send message flow diagram
+
+## Simplified Send Message Flow Diagram
 
 ![xCall flow diagram](imgs/xCall%20flow%20diagram.svg)
 
 Send message flow:
-1. Client invokes [sendCallMessage](#send-call-message-method) method indirectly through Smart Contract A or directly to xCall Smart Contract 
-2. [sendCallMessage](#send-call-message-method) method is invoked on xCall Smart Contract, returning request serial number and outputting [CallMessageSent Event](#callmessagesent)
-3. [CallMessageSent Event](#callmessagesent) on the source chain is observed by Relayer and relayed further to the destination chain xCall Smart Contract outputting [CallMessage Event](#callmessage)
-4. [CallMessageSent Event](#callmessagesent) on the destination chain is observed by Client which invokes [executeCall](#execute-call-on-destination-chain) method in xCall Smart Contract
-5. Invocation of [executeCall](#execute-call-on-destination-chain) method results in xCall Smart Contract invoking [handleCallMessage](#handle-call-message-on-destination-chain) method of Smart Contract B
-6. Successful invocation of [executeCall](#execute-call-on-destination-chain) method results in xCall Smart Contract outputting [CallExecutedEvent](#callexecuted-event)
-7. If input rollback was non-null, [ResponseMessage Event](ERROR_HANDLING.md#responsemessage) is relayed back to the source chain
-8. If execution failed and rollback was non-null, failure flow described in [Error Handling](ERROR_HANDLING.md) is invoked
+1. The client invokes the [sendCallMessage](#send-call-message-method) method indirectly through Smart Contract A or directly to the xCall Smart Contract.
+2. The [sendCallMessage](#send-call-message-method) method is invoked on the xCall Smart Contract, returning the request serial number and outputting the [CallMessageSent Event](#callmessagesent).
+3. The [CallMessageSent Event](#callmessagesent) on the source chain is observed by the Relayer and relayed further to the destination chain's xCall Smart Contract, outputting the [CallMessage Event](#callmessage).
+4. The [CallMessageSent Event](#callmessagesent) on the destination chain is observed by the client, which invokes the [executeCall](#execute-call-on-destination-chain) method in the xCall Smart Contract.
+5. The invocation of the [executeCall](#execute-call-on-destination-chain) method results in the xCall Smart Contract invoking the [handleCallMessage](#handle-call-message-on-destination-chain) method of Smart Contract B.
+6. Successful invocation of the [executeCall](#execute-call-on-destination-chain) method results in the xCall Smart Contract outputting the [CallExecutedEvent](#callexecuted-event).
+7. If the input rollback was non-null, the [ResponseMessage Event](ERROR_HANDLING.md#responsemessage) is relayed back to the source chain.
+8. If the execution failed and the rollback was non-null, the failure flow described in [Error Handling](ERROR_HANDLING.md) is invoked.
 
-## Send call message method
 
-Sending call message requires your Smart Contract to call **pre-deployed** xCall Smart Contract ``sendCallMessage`` method.
+## Send Call Message Method
+
+Sending a call message requires your Smart Contract to call the **pre-deployed** xCall Smart Contract's `sendCallMessage` method.
 
 More detailed explanation can be found [here](https://github.com/icon-project/IIPs/blob/master/IIPS/iip-52.md#sendcallmessage).
 
@@ -78,7 +79,7 @@ interface.
 You can find xCall implementation of ``ICallService`` interface in [CallService.sol](https://github.com/icon-project/btp2-solidity/blob/276a7d7b004bcc918b6c4bf656439c335a3960b5/xcall/contracts/CallService.sol).
 
 
-### Smart Contract example implementation
+### Smart Contract Example Implementation
 
 See below example implementations of JVM and EVM Smart Contracts able to send message.
 
@@ -181,7 +182,7 @@ To minimize the gas cost, the calldata payload delivered from the source chain a
 (or client) when calling the following ``executeCall`` method. Then ``xCall`` compares it with the saved hash value
 to validate its integrity.
 
-## Execute Call on destination chain
+## Execute Call On The Destination Chain
 After ```CallMessage``` Event is observed by user (client) he invokes the following method on ``xCall`` with the given ``_reqId`` and ``_data``.
 
 ```java
@@ -195,7 +196,7 @@ After ```CallMessage``` Event is observed by user (client) he invokes the follow
 void executeCall(BigInteger _reqId, byte[] _data);
 ```
 
-## Handle Call Message on destination chain
+## Handle Call Message On The Destination Chain
 
 When the user calls ``executeCall`` method, the ``xCall`` invokes the following predefined method
 in the target dApp with the calldata associated in ``_reqId``.
@@ -238,7 +239,7 @@ To notify the execution result of dApp's ``handleCallMessage`` method, the follo
 void CallExecuted(BigInteger _reqId, int _code, String _msg);
 ```
 
-## Sending message from client side
+## Sending Message From The Client Side
 
 In order to send message from source to destination chain off-chain call using user wallet must be made.
 
@@ -262,7 +263,7 @@ being able to send message from EVM/JVM to EMV/JVM in a simple manner.
 
 **Note**: proper configuration and deployment of before mentioned Smart Contracts is needed.
 
-### Sending varius types of messages
+### Sending Varius Types Of Messages
 
 Message being sent takes form in well known `bytes` thus Client has various options on how to encode and decode messages on sending and receiving end.
 
@@ -311,7 +312,7 @@ Elaboration on Fee handling can be found in [Fee Handling](FEE_HANDLING.md) docu
 
 Elaboration on Error handling can be found in [Error Handling](ERROR_HANDLING.md) document.
 
-## Relevant resources
+## Relevant Resources
 
 - [xCall-testing-dApp](https://github.com/R0bi7/xCall-testing-dApp)
 - [Pre-deployed xCall & BTP Smart Contracts](https://docs.icon.community/cross-chain-communication/blockchain-transmission-protocol-btp)

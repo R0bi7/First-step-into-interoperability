@@ -4,21 +4,19 @@
     alt="Icon logo">
 </p>
 
-# First step into xCall interoperability
+# First Step into xCall Interoperability
 
-” On this path, it is only the first step that counts. ” John Vianney
+> "On this path, it is only the first step that counts." - John Vianney
 
-Making first step into interoperable world definitely is an endeavour for a blockchain developer.
-Being an early adopter is both exciting and challenging at the same time.
+Making the first step into the interoperable world is undoubtedly an endeavor for a blockchain developer. Being an early adopter is both exciting and challenging at the same time.
 
-This is why I have decided to summarize my first interaction with xCall and provide you with the documentation which should
-get you up to speed with xCall and working example in no time.
+This is why I have decided to summarize my first interaction with xCall and provide you with the documentation that will get you up to speed with xCall and a working example in no time.
 
-From developer to developers.
+From developer for developers.
 
-## Ready, Steady, go!
+## Ready, Steady, Go!
 
-If you think you got what it takes to on-board on interoperable journey, click [here](docs/STARTING_WITH_XCALL.md) to proceed!
+If you think you've got what it takes to onboard the interoperable journey, click [here](docs/STARTING_WITH_XCALL.md) to proceed!
 
 ## Resources
 
