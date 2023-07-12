@@ -24,8 +24,8 @@ Send message flow:
 4. The [CallMessageSent Event](#callmessagesent) on the destination chain is observed by the client, which invokes the [executeCall](#execute-call-on-destination-chain) method in the xCall Smart Contract.
 5. The invocation of the [executeCall](#execute-call-on-destination-chain) method results in the xCall Smart Contract invoking the [handleCallMessage](#handle-call-message-on-destination-chain) method of Smart Contract B.
 6. Successful invocation of the [executeCall](#execute-call-on-destination-chain) method results in the xCall Smart Contract outputting the [CallExecutedEvent](#callexecuted-event).
-7. If the input rollback was non-null, the [ResponseMessage Event](ERROR_HANDLING.md#responsemessage) is relayed back to the source chain.
-8. If the execution failed and the input rollback was non-null, the failure flow described in [Error Handling](ERROR_HANDLING.md) is invoked.
+7. If the input ``_rollback`` (in [sendCallMessage](#send-call-message-method)) was non-null, the [ResponseMessage Event](ERROR_HANDLING.md#responsemessage) is relayed back to the source chain.
+8. If the execution failed and the input ``_rollback`` (in [sendCallMessage](#send-call-message-method)) was non-null, the failure flow described in [Error Handling](ERROR_HANDLING.md) is invoked.
 
 
 ## Send Call Message Method
