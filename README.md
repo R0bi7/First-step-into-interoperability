@@ -29,6 +29,10 @@ If you think you've got what it takes to onboard the interoperable journey, clic
 - [IBC on ICON](https://github.com/icon-project/IBC-Integration)
 - [xCall testnet contracts](https://docs.icon.community/cross-chain-communication/blockchain-transmission-protocol-btp)
 
+# Contact
+
+If you have any further queries, please contact me at http://t.me/robibobi7.
+
 ## License
 
 This project is available under the [Apache License, Version 2.0](LICENSE).
