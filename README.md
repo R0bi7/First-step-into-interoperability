@@ -21,7 +21,7 @@ If you think you've got what it takes to onboard the interoperable journey, clic
 
 ## Resources
 
-- [xCall documentation](https://docs.icon.community/cross-chain-communication/xcall)
+- [xCall documentation](https://docs.icon.community/xcall/what-is-xcall)
 - [Sending a message with xCall without rollback](https://docs.icon.community/cross-chain-communication/xcall/sending-a-message-with-xcall)
 - [BTP Tutorial: Setting up BTP locally for testing ](https://icon.community/tutorials/btp-tutorial-setting-up-btp-locally-for-testing/)
 - [End-to-end demonstration of BTP containing xCall](https://github.com/icon-project/btp2/tree/main/e2edemo)
