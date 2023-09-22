@@ -21,10 +21,10 @@ If you think you've got what it takes to onboard the interoperable journey, clic
 
 ## Resources
 
-- [xCall documentation](https://docs.icon.community/xcall/what-is-xcall)
-- [Sending a message with xCall without rollback](https://docs.icon.community/cross-chain-communication/xcall/sending-a-message-with-xcall)
-- [BTP Tutorial: Setting up BTP locally for testing ](https://icon.community/tutorials/btp-tutorial-setting-up-btp-locally-for-testing/)
-- [End-to-end demonstration of BTP containing xCall](https://github.com/icon-project/btp2/tree/main/e2edemo)
+- [xCall documentation](https://www.xcall.dev/what-is-xcall)
+- [Sending a message with xCall without rollback](https://www.xcall.dev/quickstart/sending-a-message)
+- [BTP Tutorial: Setting up BTP locally for testing ](https://www.xcall.dev/quickstart/setting-up-a-local-environment)
+- [End-to-end demonstration of BTP containing xCall](https://www.xcall.dev/guides/build-a-cross-chain-voting-dapp/build-a-cross-chain-voting-dapp-part-1)
 - [xCall Standard](https://github.com/icon-project/IIPs/blob/master/IIPS/iip-52.md)
 - [IBC on ICON](https://github.com/icon-project/IBC-Integration)
 - [xCall testnet contracts](https://docs.icon.community/cross-chain-communication/blockchain-transmission-protocol-btp)
